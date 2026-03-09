@@ -1,16 +1,20 @@
 import socket
+import datetime
 
-print("Simple Python Port Scanner")
+print("==============================")
+
+print("             Python Port Scanner      ")
+
+print("==============================")
 
 target = input ("Enter target IP: ")
+print("Time started:",datetime.datetime.now())
+print("------------------------------")
 
-ports = [21, 22, 23, 53, 80, 110, 139, 143, 443, 445, 3389]
+for port in range(1,1025):
 
-print(f"\nScanning target {target}...\n")
-
-for port in ports:
     s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-    socket.setdefaulttimeout(1)
+    socket.setdefaulttimeout(0.5)
 
     result = s.connect_ex((target,port))
 
@@ -18,3 +22,5 @@ for port in ports:
           print(f"Port {port} is OPEN")
 
 s.close()
+
+print("\nScan completed. ")
